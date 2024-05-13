@@ -20,7 +20,7 @@ const Register = () => {
     <Inputlabel label="Username" placeHolder="Username" onChange={(c)=>{ SetInputData({...inputdata,name:c.target.value})}}/>
     <Inputlabel label="Email" placeHolder="Email" onChange={(c)=>{SetInputData({...inputdata,email:c.target.value}) }}/>
     <Inputlabel label="Password" placeHolder="Password" onChange={(e)=>{SetInputData({...inputdata,password:e.target.value}) }}/>
-    <button className="bg-blue-500 text-white w-full p-2 rounded-md" onClick={()=>handleSubmit()}>Register</button>
+    <button className="bg-blue-500 text-white w-full p-2 mt-4 rounded-md" onClick={()=>handleSubmit()}>Register</button>
  </div>
 </div> 
 }
@@ -32,9 +32,9 @@ interface InputlabelProps{
 }
 
 
-const Inputlabel=({label,placeHolder,onChange}:InputlabelProps)=>{
+export const Inputlabel=({label,placeHolder,onChange}:InputlabelProps)=>{
     return(
-        <div>
+        <div className="my-2">
             <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
             <input type="text"  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={placeHolder} onChange={onChange} required />
         </div>

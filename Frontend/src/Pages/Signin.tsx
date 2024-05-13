@@ -1,14 +1,13 @@
 import Quote from "../components/Quote/Quote"
-import Register from "../components/Register"
+import Login from "../components/Signin"
 
 const Signin = () => {
   return (
-    <div>
       <div className="grid grid-cols-2">
-        <Register />
+        <Login />
         <Quote />
       </div>
-    </div>
+  
   )
 }
 
