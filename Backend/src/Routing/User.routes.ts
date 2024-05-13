@@ -56,7 +56,6 @@ userRouter.post('/signin', async (c) => {
             email: body.email,
         }
     });
-
     if (!user) {
         c.status(403);
         return c.json({ error: "user not found" });
