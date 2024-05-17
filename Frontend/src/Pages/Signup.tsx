@@ -7,7 +7,7 @@ const Signup = () => {
         <Register />
         <div className="hidden lg:block">
          <Quote />
-        </div>
+        </div> 
       </div>
   );
 };

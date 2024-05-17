@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Signup } from "@spearhead08/common";
 import { ChangeEvent, useState } from "react";
 import ApiClient from "../../config/Api";
@@ -9,11 +9,13 @@ const Register = () => {
         email:"",
         password:""
     })
+    const navigate= useNavigate();
     const handleSubmit = async() =>{
         try {
             const res=await ApiClient.post("/api/v1/user/signup",inputdata) ;
             console.log(res.data.jwt);
             localStorage.setItem("token",res.data.jwt);
+            navigate("/blogs");
         } catch (error) {
             console.log(error)
         }
@@ -21,7 +23,6 @@ const Register = () => {
   return <div className="flex justify-center items-center">
     <div className="w-1/2 ">
     <h1 className="text-3xl text-center">Create an Account</h1>
-
     <p className="text-md text-center"> Already Registered ! <Link to={"/signin"} className="underline text-grey-200">Login</Link></p>
     <Inputlabel label="Username" type="text" placeHolder="Username" onChange={(c)=>{ SetInputData({...inputdata,name:c.target.value})}}/>
     <Inputlabel label="Email" type="email" placeHolder="Email" onChange={(c)=>{SetInputData({...inputdata,email:c.target.value}) }}/>

@@ -2,7 +2,7 @@ import axios from "axios";
 // import store from "../../src/Store/Store";
 
 const ApiClient = axios.create({
-  baseURL:"http://127.0.0.1:8787",
+  baseURL:import.meta.env.VITE_API_URL as string,
   // withCredentials: false,
   headers: {
     Accept: "application/json",
