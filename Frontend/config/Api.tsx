@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 // import store from "../../src/Store/Store";
 
 const ApiClient = axios.create({
@@ -17,17 +17,19 @@ const ApiClient = axios.create({
 });
 
 ApiClient.interceptors.request.use(
-  (config) => {
-    // if (
-    //   store?.getState()?.authenticationData?.token &&
-    //   !["/auth/login", "/auth/register"].includes(config.url)
-    // ) {
-    //   const token = store?.getState()?.authenticationData?.token;
-    //   config.headers["Authorization"] = `Bearer ${token}`;
-    // }
-    return config;
+  (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem("token");
+    if (config.url && !config.url.endsWith("/signup") && !config.url.endsWith("/signin") && token) {
+      config.headers = config.headers || {};
+      config.headers["Authorization"] = `${token}`;
+  }
+  return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    // Handle the error
+    console.error(error);
+    return Promise.reject(error);
+  }
 );
 
 export default ApiClient;
