@@ -21,6 +21,7 @@ ApiClient.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (config.url && !config.url.endsWith("/signup") && !config.url.endsWith("/signin") && token) {
       config.headers = config.headers || {};
+
       config.headers["Authorization"] = `${token}`;
   }
   return config;
